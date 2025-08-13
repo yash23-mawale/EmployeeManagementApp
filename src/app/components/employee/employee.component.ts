@@ -66,7 +66,7 @@ export class EmployeeComponent  {
   }
 
   //Delete employee by id
-  deleteempid:number=0;
+  deleteempid:number = 0;
   deleteEmployeeById(id:number):void{
     this.http.deleteEmployeeById(id).subscribe((res:employee)=>{
       console.log(res)

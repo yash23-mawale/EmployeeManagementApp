@@ -1,0 +1,189 @@
+<div class="container mt-4">
+  
+  <!-- Page Header -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <h2 class="text-primary mb-0">Employee Management System</h2>
+      <hr>
+    </div>
+  </div>
+
+  <!-- Get all employee -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">Get All Employees</h5>
+    </div>
+    <div class="card-body">
+      <button class="btn btn-primary w-100" (click)="getAllEmployee()">Get All Employee</button>
+    </div>
+  </div>
+
+  <!-- All Employees Table -->
+  <div class="card mb-4 shadow-sm" *ngIf="arr?.length">
+    <div class="card-header bg-dark text-white">
+      <h5 class="mb-0">Employee List</h5>
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped mb-0">
+          <thead class="table-dark">
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Department</th>
+              <th>Salary</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let emp of arr">
+              <td>{{ emp.id }}</td>
+              <td>{{ emp.name }}</td>
+              <td>{{ emp.department }}</td>
+              <td>{{ emp.salary }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Get Employee by ID -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header bg-info text-white">
+      <h5 class="mb-0">Get Employee By ID</h5>
+    </div>
+    <div class="card-body row g-2 align-items-center">
+      <div class="col">
+        <input type="number" class="form-control" placeholder="Enter Employee ID" [(ngModel)]="getempid">
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-info" (click)="getEmployeeById(getempid)">Search</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Show employee by id -->
+  <div class="card mb-4 shadow-sm" *ngIf="employee?.id">
+    <div class="card-header bg-info text-white">
+      <h5 class="mb-0">Employee Details</h5>
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped mb-0">
+          <thead class="table-dark">
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Department</th>
+              <th>Salary</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ employee.id }}</td>
+              <td>{{ employee.name }}</td>
+              <td>{{ employee.department }}</td>
+              <td>{{ employee.salary }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Employee -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header bg-success text-white">
+      <h5 class="mb-0">Add Employee</h5>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="addEmployee(f)" #f="ngForm">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" name="name" id="name" class="form-control" ngModel>
+        </div>
+        <div class="mb-3">
+          <label for="department" class="form-label">Department</label>
+          <input type="text" name="department" id="department" class="form-control" ngModel>
+        </div>
+        <div class="mb-3">
+          <label for="salary" class="form-label">Salary</label>
+          <input type="number" name="salary" id="salary" class="form-control" ngModel>
+        </div>
+        <button type="submit" class="btn btn-success w-100">Add Employee</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Remove Employee -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header bg-danger text-white">
+      <h5 class="mb-0">Delete Employee By ID</h5>
+    </div>
+    <div class="card-body row g-2 align-items-center">
+      <div class="col">
+        <input type="number" class="form-control" placeholder="Enter Employee ID" [(ngModel)]="deleteempid">
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-danger" (click)="deleteEmployeeById(deleteempid)">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Update Whole Employee -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header bg-warning">
+      <h5 class="mb-0">Update Employee</h5>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="updateEmployee(form)" #form="ngForm">
+        <div class="mb-3">
+          <label for="id" class="form-label">Id</label>
+          <input type="number" name="id" id="id" class="form-control" ngModel>
+        </div>
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" name="name" id="name" class="form-control" ngModel>
+        </div>
+        <div class="mb-3">
+          <label for="department" class="form-label">Department</label>
+          <input type="text" name="department" id="department" class="form-control" ngModel>
+        </div>
+        <div class="mb-3">
+          <label for="salary" class="form-label">Salary</label>
+          <input type="number" name="salary" id="salary" class="form-control" ngModel>
+        </div>
+        <button type="submit" class="btn btn-warning w-100">Update Employee</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Update Single Field -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header bg-secondary text-white">
+      <h5 class="mb-0">Update Single Field</h5>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="UpdateEmployeeNameOrDepartmentOrSalary(formupdate)" #formupdate="ngForm">
+        <div class="mb-3">
+          <label for="id" class="form-label">Id</label>
+          <input type="number" name="id" id="id" class="form-control" ngModel>
+        </div>
+        <div class="mb-3">
+          <label for="path" class="form-label">Field to Update</label>
+          <select id="path" name="path" class="form-select" ngModel>
+            <option value="/name">Name</option>
+            <option value="/department">Department</option>
+            <option value="/salary">Salary</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="value" class="form-label">New Value</label>
+          <input type="text" name="value" id="value" class="form-control" ngModel>
+        </div>
+        <button type="submit" class="btn btn-secondary w-100">Update Field</button>
+      </form>
+    </div>
+  </div>
+
+</div>
